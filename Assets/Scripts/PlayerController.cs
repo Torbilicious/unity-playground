@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 
 // ReSharper disable once CheckNamespace
@@ -12,7 +13,7 @@ public class Boundary
 }
 
 // ReSharper disable once CheckNamespace
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     //Ship related Variables
     public float Speed = 10.0f;
@@ -28,6 +29,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         if (Input.GetButton("Fire1") && Time.time > NextFire)
         {
             NextFire = Time.time + FireRate;
@@ -39,6 +45,11 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
