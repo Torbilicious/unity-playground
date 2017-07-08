@@ -3,9 +3,9 @@ build/
 .idea*
 
 Temp/
-Obj/
+obj/
 UnityGenerated/
-/Library/
+Library/
 
 ExportedObj/
 *.svd
